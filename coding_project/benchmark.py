@@ -163,3 +163,19 @@ for r in results:
           f"Recall: {r['recall']:.4f}, "
           f"F1-score: {r['f1_score']:.4f}, "
           f"Training time: {r['training_time_sec']:.2f} sec")
+
+# Extract fractions and training times
+fractions_plot = [r['fraction'] * 100 for r in results]
+training_times = [r['training_time_sec'] for r in results]
+
+# Create the plot
+plt.figure(figsize=(10, 6))
+plt.plot(fractions_plot, training_times, marker='o', linestyle='-', color='b')
+plt.xlabel('Dataset Fraction (%)')
+plt.ylabel('Training Time (seconds)')
+plt.title('Training Time vs. Dataset Fraction')
+plt.grid(True)
+plt.show()
+
+# Print average inference time
+print(f"Average inference time per batch: {avg_inference_time:.4f} seconds")
